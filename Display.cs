@@ -236,7 +236,7 @@ public static class Display
             Console.Write("  ");
 
             // Show cards
-            foreach (var card in player.HoleCards)
+            foreach (var card in rank.BestCards)
             {
                 WriteCard(card);
                 Console.Write(" ");
