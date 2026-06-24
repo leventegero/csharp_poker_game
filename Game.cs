@@ -433,7 +433,7 @@ public class Game
             .OrderByDescending(r => r.rank)
             .ToList();
 
-        Display.Showdown(results);
+        Display.Showdown(_communityCards, results);
 
         // Find winner(s)
         var bestRank = results[0].rank;

@@ -223,10 +223,20 @@ public static class Display
     /// <summary>
     /// Displays showdown results for all active players.
     /// </summary>
-    public static void Showdown(List<(Player player, HandRank rank)> results)
+    public static void Showdown(List<Card> communityCards, List<(Player player, HandRank rank)> results)
     {
         Console.WriteLine();
         WriteLineColor("  ═══ SHOWDOWN ═══", ConsoleColor.Yellow);
+        Console.WriteLine();
+
+        // Show community cards (the final board)
+        Console.Write("  BOARD: ");
+        foreach (var card in communityCards)
+        {
+            WriteCard(card);
+            Console.Write(" ");
+        }
+        Console.WriteLine();
         Console.WriteLine();
 
         foreach (var (player, rank) in results)
@@ -235,7 +245,18 @@ public static class Display
             WriteColor($"{player.Name,-10}", player.DisplayColor);
             Console.Write("  ");
 
-            // Show cards
+            // Show own hole cards
+            WriteColor("Own: ", ConsoleColor.DarkGray);
+            foreach (var card in player.HoleCards)
+            {
+                WriteCard(card);
+                Console.Write(" ");
+            }
+
+            Console.Write("  ");
+
+            // Show best 5 cards
+            WriteColor("Best: ", ConsoleColor.DarkGray);
             foreach (var card in rank.BestCards)
             {
                 WriteCard(card);
