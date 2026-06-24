@@ -51,7 +51,8 @@ public class Game
         Display.WriteColor("Max", ConsoleColor.Magenta);
         Display.WriteLineColor(" (aggressive)", ConsoleColor.DarkGray);
 
-        Display.PressAnyKey();
+        if (Display.PressAnyKey())
+            return;
 
         while (GetActivePlayers().Count > 1)
         {
@@ -71,7 +72,8 @@ public class Game
             // Move dealer button
             _dealerIndex = (_dealerIndex) % _players.Count;
 
-            Display.PressAnyKey();
+            if (Display.PressAnyKey())
+                return;
         }
 
         // Game over

@@ -324,13 +324,15 @@ public static class Display
 
     /// <summary>
     /// Pauses and waits for the user to press a key.
+    /// Returns true if 'S' was pressed (to stop/exit), false otherwise.
     /// </summary>
-    public static void PressAnyKey(string message = "Press any key to continue...")
+    public static bool PressAnyKey(string message = "Press any key to continue (or 's' to stop)...")
     {
         Console.WriteLine();
         WriteColor($"  {message}", ConsoleColor.DarkGray);
-        Console.ReadKey(true);
+        var keyInfo = Console.ReadKey(true);
         Console.WriteLine();
+        return keyInfo.Key == ConsoleKey.S;
     }
 
     /// <summary>
